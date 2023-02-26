@@ -6,7 +6,11 @@ function App() {
   const interest = 7.2;
   const tenure = 120;
 
-  const { emi } = calculateTerms({ principal, tenure, interest });
+  const { emi, amortizationTable } = calculateTerms({
+    principal,
+    tenure,
+    interest,
+  });
 
   return (
     <div className="page-container">
