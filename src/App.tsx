@@ -1,32 +1,15 @@
-import { calculateTerms } from "./utils";
 import "./app.css";
+import React, { useState } from "react";
+import { calculateTerms } from "./utils";
 import { IAdditionalPayment, IInterestChange } from "./interfaces";
+import { BasicLoanDetails } from "./components";
 
 function App() {
-  const principal = 1000000;
-  const interest = 7.2;
-  const tenure = 120;
-  const additionalPayments: IAdditionalPayment[] = [
-    {
-      amount: 100000,
-      month: 4,
-    },
-    {
-      amount: 100000,
-      month: 12,
-    },
-  ];
-
-  const interestChanges: IInterestChange[] = [
-    {
-      interest: 7.5,
-      month: 6,
-    },
-    {
-      interest: 9,
-      month: 18,
-    },
-  ];
+  const [principal, setPrincipal] = useState(1000000);
+  const [interest, setInterest] = useState(7);
+  const [tenure, setTenure] = useState(120);
+  const additionalPayments: IAdditionalPayment[] = [];
+  const interestChanges: IInterestChange[] = [];
 
   const { emi, amortizationTable } = calculateTerms({
     principal,
@@ -55,6 +38,14 @@ function App() {
 
   return (
     <div className="page-container">
+      <BasicLoanDetails
+        principal={principal}
+        setPrincipal={setPrincipal}
+        interest={interest}
+        setInterest={setInterest}
+        tenure={tenure}
+        setTenure={setTenure}
+      />
       <div className="app-information-bar">
         <h1 className="app-information-bar__emi-key">EMI</h1>
         <h2 className="app-information-bar__emi-value">{Math.ceil(emi)}</h2>
