@@ -1,6 +1,6 @@
 import { calculateTerms } from "./utils";
 import "./app.css";
-import { IAdditionalPayment } from "./interfaces";
+import { IAdditionalPayment, IInterestChange } from "./interfaces";
 
 function App() {
   const principal = 1000000;
@@ -17,11 +17,23 @@ function App() {
     },
   ];
 
+  const interestChanges: IInterestChange[] = [
+    {
+      interest: 7.5,
+      month: 6,
+    },
+    {
+      interest: 9,
+      month: 18,
+    },
+  ];
+
   const { emi, amortizationTable } = calculateTerms({
     principal,
     tenure,
     interest,
     additionalPayments,
+    interestChanges,
   });
 
   const formattedAmortizationTable = amortizationTable.map(
