@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --primary-text: #38bdf8;
+    --secondary-text:  #eab308;
+}
+
+body {
+    @apply bg-black;
+}

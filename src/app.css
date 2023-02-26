@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-container {
+    @apply m-auto mt-16 w-3/5;
+}
+
+.app-information-bar {
+    @apply text-center;
+}
+
+.app-information-bar__emi-key {
+    @apply font-bold p-2;
+    color: var(--primary-text)
+}
+
+.app-information-bar__emi-value {
+    @apply m-2 p-2;
+    color: var(--secondary-text)
+}
