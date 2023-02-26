@@ -13,5 +13,5 @@
 
 .basic-loan-details-grid__value {
     color: var(--secondary-text);
-    @apply text-right px-4 bg-gray-700;
+    @apply text-right px-4 bg-gray-700 border border-gray-500;
 }

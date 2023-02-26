@@ -20,27 +20,30 @@ export const BasicLoanDetails = ({
   const basicLoanDetails = [
     {
       key: "Principal",
-      value: principal,
+      value: principal.toString(),
       onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
         setPrincipal(+event.target.value),
+      step: 100000,
     },
     {
       key: "Interest",
-      value: interest,
+      value: interest.toString(),
       onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
         setInterest(+event.target.value),
+      step: 0.1,
     },
     {
       key: "Tenure",
-      value: tenure,
+      value: tenure.toString(),
       onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
         setTenure(+event.target.value),
+      step: 1,
     },
   ];
 
   return (
     <div className="basic-loan-details-container">
-      {basicLoanDetails.map(({ key, value, onChange }, index) => (
+      {basicLoanDetails.map(({ key, value, step, onChange }, index) => (
         <div
           className="basic-loan-details-grid"
           key={`basic-loan-details-${index}`}
@@ -51,7 +54,7 @@ export const BasicLoanDetails = ({
             className="basic-loan-details-grid__value"
             value={value}
             inputMode="numeric"
-            step="0.1"
+            step={step}
             onChange={onChange}
           />
         </div>

@@ -1,23 +1,36 @@
 import "./app.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { calculateTerms } from "./utils";
-import { IAdditionalPayment, IInterestChange } from "./interfaces";
+import {
+  IAdditionalPayment,
+  IAmortization,
+  IInterestChange,
+} from "./interfaces";
 import { Amortization, BasicLoanDetails } from "./components";
+import { useDebounce } from "./hooks";
 
 function App() {
+  const [emi, setEmi] = useState(0);
+  const [amortization, setAmortization] = useState<IAmortization[]>([]);
   const [principal, setPrincipal] = useState(1000000);
   const [interest, setInterest] = useState(7);
   const [tenure, setTenure] = useState(120);
   const additionalPayments: IAdditionalPayment[] = [];
   const interestChanges: IInterestChange[] = [];
 
-  const { emi, amortization } = calculateTerms({
-    principal,
-    tenure,
-    interest,
-    additionalPayments,
-    interestChanges,
-  });
+  const debounceCalculateTerms = useDebounce(() => {
+    const { emi, amortization } = calculateTerms({
+      principal,
+      tenure,
+      interest,
+      additionalPayments,
+      interestChanges,
+    });
+    setEmi(emi);
+    setAmortization(amortization);
+  }, 500);
+
+  useEffect(() => debounceCalculateTerms(), [principal, interest, tenure]);
 
   return (
     <div className="page-container">
