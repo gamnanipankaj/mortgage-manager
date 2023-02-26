@@ -1,6 +1,7 @@
 import "./amortization.css";
 import React from "react";
 import { IAmortization } from "../interfaces";
+import { formatAmount } from "../utils/format-amount";
 
 interface IAmortizationProps {
   amortization: IAmortization[];
@@ -31,9 +32,9 @@ const AmortizationEntry = ({
   return (
     <div className="amortization-entry">
       <p>{month}</p>
-      <p>{Math.round(interestPayment)}</p>
-      <p>{Math.round(principalPayment)}</p>
-      <p>{Math.round(principalRemaining)}</p>
+      <p>{formatAmount(Math.ceil(interestPayment))}</p>
+      <p>{formatAmount(Math.round(principalPayment))}</p>
+      <p>{formatAmount(Math.round(principalRemaining))}</p>
     </div>
   );
 };

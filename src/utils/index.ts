@@ -1,4 +1,4 @@
-import { IAdditionalPayment, ILoanDetails } from "../interfaces";
+import { ILoanDetails } from "../interfaces";
 import { calculateAmortization } from "./calculate-amortization";
 import { calculateEmi } from "./calculate-emi";
 

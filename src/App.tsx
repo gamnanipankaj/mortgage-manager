@@ -8,6 +8,7 @@ import {
 } from "./interfaces";
 import { Amortization, BasicLoanDetails } from "./components";
 import { useDebounce } from "./hooks";
+import { formatAmount } from "./utils/format-amount";
 
 function App() {
   const [emi, setEmi] = useState(0);
@@ -36,7 +37,7 @@ function App() {
     <div className="page-container">
       <div className="app-information-bar">
         <h2>EMI:</h2>
-        <h2>&#x20B9; {Math.ceil(emi)}</h2>
+        <h2>{formatAmount(Math.ceil(emi), { isCurrencySymbol: true })}</h2>
       </div>
       <BasicLoanDetails
         principal={principal}

@@ -8,7 +8,7 @@
 }
 
 .amortization-headers > div {
-    @apply text-justify text-sm border-b md:px-8 px-4 border-gray-500 overflow-x-clip;
+    @apply text-justify text-sm border-b md:px-8 border-gray-500 overflow-x-clip;
 }
 
 .amortization-entry__container {
@@ -20,7 +20,7 @@
 }
 
 .amortization-entry > p {
-    @apply text-justify border-b border-gray-700 md:px-8 px-4 md:py-2 py-1 font-thin;
+    @apply text-justify border-b border-gray-700 md:px-8 md:py-2 py-1 font-thin;
     font-family: 'Roboto Mono', monospace;
 }
 
