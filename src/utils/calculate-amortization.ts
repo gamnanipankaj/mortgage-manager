@@ -1,16 +1,8 @@
-import { IAdditionalPayment, IInterestChange, ILoanDetails } from "../interfaces";
+import { IAmortization, ILoanDetails } from "../interfaces";
 import { calculateRateOfInterest } from "./calculate-rate-of-interest";
 
 interface ICalculateAmortizationArgs extends ILoanDetails {
     emi: number;
-}
-
-interface IAmortization {
-    month: number;
-    interestPayment: number;
-    principalPayment: number;
-    additionalPayment: number;
-    principalRemaining: number;
 }
 
 export const calculateAmortization = ({ principal, interest, tenure, emi, additionalPayments, interestChanges }: ICalculateAmortizationArgs) => {

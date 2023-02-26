@@ -1,0 +1,41 @@
+.amortization-container {
+    @apply w-full mt-4;
+}
+
+.amortization-headers {
+    @apply grid grid-cols-4;
+    color: var(--not-important)
+}
+
+.amortization-headers > div {
+    @apply text-justify text-sm border-b md:px-8 px-4 border-gray-500 overflow-x-clip;
+}
+
+.amortization-entry__container {
+    @apply h-[60vh] overflow-scroll;
+}
+
+.amortization-entry {
+    @apply amortization-headers;
+}
+
+.amortization-entry > p {
+    @apply text-justify border-b border-gray-700 md:px-8 px-4 md:py-2 py-1 font-thin;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.amortization-entry > p:nth-child(2) {
+    color: var(--error);
+}
+
+.amortization-entry > p:nth-child(3) {
+    color: var(--success);
+}
+
+.amortization-entry > p:first-child {
+    color: var(--not-important)
+}
+
+.amortization-entry > p:last-child {
+    color: var(--secondary-text)
+}
