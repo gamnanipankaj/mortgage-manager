@@ -11,7 +11,7 @@ function App() {
   const additionalPayments: IAdditionalPayment[] = [];
   const interestChanges: IInterestChange[] = [];
 
-  const { emi, amortizationTable } = calculateTerms({
+  const { emi, amortization } = calculateTerms({
     principal,
     tenure,
     interest,
@@ -19,7 +19,7 @@ function App() {
     interestChanges,
   });
 
-  const formattedAmortizationTable = amortizationTable.map(
+  const formattedAmortizationTable = amortization.map(
     ({
       month,
       interestPayment,
@@ -38,6 +38,9 @@ function App() {
 
   return (
     <div className="page-container">
+      <div className="app-information-bar">
+        <h2 className="app-information-bar__emi">&#x20B9; {Math.ceil(emi)}</h2>
+      </div>
       <BasicLoanDetails
         principal={principal}
         setPrincipal={setPrincipal}
@@ -46,10 +49,6 @@ function App() {
         tenure={tenure}
         setTenure={setTenure}
       />
-      <div className="app-information-bar">
-        <h1 className="app-information-bar__emi-key">EMI</h1>
-        <h2 className="app-information-bar__emi-value">{Math.ceil(emi)}</h2>
-      </div>
     </div>
   );
 }

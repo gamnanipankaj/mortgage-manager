@@ -8,7 +8,7 @@
 
 .basic-loan-details-grid__key {
     color: var(--primary-text);
-    @apply text-left px-4;
+    @apply text-left px-4 py-2;
 }
 
 .basic-loan-details-grid__value {
