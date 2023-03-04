@@ -1,5 +1,5 @@
 .basic-loan-details-container {
-    @apply bg-gray-900;
+    @apply bg-gray-800;
 }
 
 .basic-loan-details-grid {
@@ -7,11 +7,11 @@
 }
 
 .basic-loan-details-grid__key {
-    color: var(--primary-text);
-    @apply text-left px-4 py-2;
+    @apply px-4 py-2 text-left text-sm;
+    color: var(--not-important);
 }
 
 .basic-loan-details-grid__value {
-    color: var(--secondary-text);
     @apply text-right px-4 bg-gray-700 border border-gray-500;
+    color: var(--secondary-text);
 }

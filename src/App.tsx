@@ -9,7 +9,13 @@ import {
 import { Amortization, BasicLoanDetails } from "./components";
 import { useDebounce, useLocalStorage } from "./hooks";
 import { formatAmount } from "./utils/format-amount";
-import { defaults } from "./defaults";
+import { AdditionalPayments } from "./components/additional-payments";
+
+const defaults = {
+  principal: 1000000,
+  interest: 7,
+  tenure: 240,
+} as const;
 
 function App() {
   const [principal, setPrincipal] = useLocalStorage<number>(
@@ -24,7 +30,9 @@ function App() {
     "tenure",
     defaults.tenure
   );
-  const additionalPayments: IAdditionalPayment[] = [];
+  const [additionalPayments, setAdditionalPayments] = useLocalStorage<
+    IAdditionalPayment[]
+  >("additionalPayments", []);
   const interestChanges: IInterestChange[] = [];
 
   const [emi, setEmi] = useState(0);
@@ -42,7 +50,10 @@ function App() {
     setAmortization(amortization);
   }, 500);
 
-  useEffect(() => debounceCalculateTerms(), [principal, interest, tenure]);
+  useEffect(
+    () => debounceCalculateTerms(),
+    [principal, interest, tenure, additionalPayments]
+  );
 
   return (
     <div className="page-container">
@@ -57,6 +68,11 @@ function App() {
         setInterest={setInterest}
         tenure={tenure}
         setTenure={setTenure}
+      />
+      <AdditionalPayments
+        tenure={tenure}
+        additionalPayments={additionalPayments}
+        setAdditionalPayments={setAdditionalPayments}
       />
       <Amortization amortization={amortization} />
     </div>

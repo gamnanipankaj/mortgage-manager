@@ -11,7 +11,12 @@ const getValue = <T>(key: string, defaultValue: T): T => {
     return defaultValue;
   }
 
-  return JSON.parse(value);
+  try {
+    return JSON.parse(value);
+  } catch(err) {
+    console.error(err);
+    return defaultValue;
+  }
 }
 
 export const useLocalStorage = <T>(key: string, defaultValue: T) => {
