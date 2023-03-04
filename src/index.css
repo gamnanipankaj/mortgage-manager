@@ -1,9 +1,9 @@
 :root {
-    --primary-text: #38bdf8;
-    --secondary-text:  #eab308;
-    --success: #84cc16;
-    --error: #ef4444;
-    --not-important: #6b7280;
+    --primary-text: #4285F4;
+    --secondary-text:  #F4B400;
+    --success: #0F9D58;
+    --error: #DB4437;
+    --not-important: #999999;
 }
 
 body {
