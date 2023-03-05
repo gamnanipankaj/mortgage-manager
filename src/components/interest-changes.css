@@ -1,0 +1,55 @@
+.interest-changes-visibility-button {
+    @apply mt-2 py-2 w-full bg-gray-700 text-center text-sm text-gray-300;
+}
+
+.interest-changes-container {
+    @apply mt-2 bg-gray-800;
+}
+
+.interest-changes-container__close {
+    @apply mx-auto py-4 w-full text-xs text-gray-300;
+}
+
+.interest-changes-container__title {
+    @apply py-2 text-center text-sm text-gray-300;
+}
+
+.interest-changes-list-entry {
+    @apply grid grid-cols-3 text-center;
+}
+
+.interest-changes-list-entry > p:first-child {
+    @apply text-sm py-2;
+    color: var(--not-important);
+}
+
+.interest-changes-list-entry > p:nth-child(2) {
+    @apply py-2;
+    color: var(--error);
+}
+
+.interest-change-list-entry__delete-button {
+    @apply m-auto px-8 py-1 text-xs border border-gray-500;
+    color: var(--not-important);
+}
+
+.interest-change-input-container {
+    @apply mt-2;
+}
+
+.interest-change-input-container__add-entry {
+    @apply w-full py-1 mt-2 mb-2 border border-gray-300;
+}
+
+.interest-change-input-container__grid {
+    @apply grid grid-cols-2;
+}
+
+.interest-change-input-container__grid > label {
+    @apply py-2 px-4 text-sm text-gray-400;
+}
+
+.interest-change-input-container__grid > input {
+    @apply px-4 bg-gray-700 border border-gray-500 text-right;
+    color: var(--secondary-text);
+}

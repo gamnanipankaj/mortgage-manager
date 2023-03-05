@@ -6,7 +6,7 @@ import {
   IAmortization,
   IInterestChange,
 } from "./interfaces";
-import { Amortization, BasicLoanDetails } from "./components";
+import { Amortization, BasicLoanDetails, InterestChanges } from "./components";
 import { useDebounce, useLocalStorage } from "./hooks";
 import { formatAmount } from "./utils/format-amount";
 import { AdditionalPayments } from "./components/additional-payments";
@@ -33,7 +33,9 @@ function App() {
   const [additionalPayments, setAdditionalPayments] = useLocalStorage<
     IAdditionalPayment[]
   >("additionalPayments", []);
-  const interestChanges: IInterestChange[] = [];
+  const [interestChanges, setInterestChanges] = useLocalStorage<
+    IInterestChange[]
+  >("interestChanges", []);
 
   const [emi, setEmi] = useState(0);
   const [amortization, setAmortization] = useState<IAmortization[]>([]);
@@ -52,7 +54,7 @@ function App() {
 
   useEffect(
     () => debounceCalculateTerms(),
-    [principal, interest, tenure, additionalPayments]
+    [principal, interest, tenure, additionalPayments, interestChanges]
   );
 
   return (
@@ -73,6 +75,11 @@ function App() {
         tenure={tenure}
         additionalPayments={additionalPayments}
         setAdditionalPayments={setAdditionalPayments}
+      />
+      <InterestChanges
+        tenure={tenure}
+        interestChanges={interestChanges}
+        setInterestChanges={setInterestChanges}
       />
       <Amortization amortization={amortization} />
     </div>

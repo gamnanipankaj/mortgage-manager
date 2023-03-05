@@ -11,14 +11,12 @@ export const calculateAmortization = ({ principal, interest, tenure, emi, additi
     let principalRemaining = principal;
     let rateOfInterest = calculateRateOfInterest(interest);
     for(let month = 1; month <= tenure; month += 1) {
-        const interestChange = interestChanges.find((interestChange) => interestChange.month === month)?.interest ?? interest;
-        interest = interestChange;
+        // Case where the EMI remains same but the interest changes
+        interest = interestChanges.find((interestChange) => interestChange.month === month)?.interest ?? interest;
         rateOfInterest = calculateRateOfInterest(interest);
 
-        const additionalPayment = additionalPayments.find((additionalPayment) => additionalPayment.month === month)?.amount ?? 0;
-        // principalRemaining -= additionalPayment;
-
         const interestPayment = principalRemaining * rateOfInterest;
+        const additionalPayment = additionalPayments.find((additionalPayment) => additionalPayment.month === month)?.amount ?? 0;
         const principalPayment = additionalPayment + emi - interestPayment;
 
         // Remaining principal at the end of the month

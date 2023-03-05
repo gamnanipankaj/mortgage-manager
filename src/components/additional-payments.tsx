@@ -95,23 +95,25 @@ export const AdditionalPayments = ({
               </button>
             </div>
           ))}
-          {inputs.map(({ key, type, value, step, min, max, onChange }) => (
-            <div
-              className="additional-payments-input-container__grid"
-              key={`additional-payment-input-grid-${key}`}
-            >
-              <label>{key}</label>
-              <input
-                type={type}
-                value={value}
-                onChange={onChange}
-                step={step}
-                inputMode="numeric"
-                min={min}
-                max={max}
-              />
-            </div>
-          ))}
+          <div className="mt-2">
+            {inputs.map(({ key, type, value, step, min, max, onChange }) => (
+              <div
+                className="additional-payments-input-container__grid"
+                key={`additional-payment-input-grid-${key}`}
+              >
+                <label>{key}</label>
+                <input
+                  type={type}
+                  value={value}
+                  onChange={onChange}
+                  step={step}
+                  min={min}
+                  max={max}
+                  inputMode="numeric"
+                />
+              </div>
+            ))}
+          </div>
           <button className="border px-2" onClick={onAddAdditionalPayment}>
             +
           </button>
