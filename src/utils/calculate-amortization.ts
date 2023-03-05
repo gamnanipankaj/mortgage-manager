@@ -10,7 +10,7 @@ export const calculateAmortization = ({ principal, interest, tenure, emi, additi
 
     let principalRemaining = principal;
     let rateOfInterest = calculateRateOfInterest(interest);
-    for(let month = 1; month <= tenure; month += 1) {
+    for(let month = 1; month <= 2 * tenure && principalRemaining > 0; month += 1) {
         // Case where the EMI remains same but the interest changes
         interest = interestChanges.find((interestChange) => interestChange.month === month)?.interest ?? interest;
         rateOfInterest = calculateRateOfInterest(interest);
@@ -29,10 +29,6 @@ export const calculateAmortization = ({ principal, interest, tenure, emi, additi
             additionalPayment,
             principalRemaining,
         });
-
-        if(principalRemaining <= 0) {
-            break;
-        }
     }
 
     return amortization;

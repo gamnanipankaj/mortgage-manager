@@ -2,6 +2,7 @@ import "./interest-changes.css";
 import React, { useState } from "react";
 import { IInterestChange } from "../interfaces";
 import { InputSection } from "../common/input-section";
+import { InputGrid } from "../common/input-grid";
 
 interface IInterestChangesProps {
   tenure: number;
@@ -44,16 +45,24 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
     !isNaN(interest) && interest > 0 && interest < 100;
   const checkIsMonthValid = (month: number) =>
     !isNaN(month) && month > 0 && month <= tenure;
+  const checkIsNotDuplicate = (m: number, i: number) =>
+    !interestChanges.some(
+      ({ month, interest }) => m === month && i === interest
+    );
 
   const onAddInterestChange = () => {
-    if (checkIsMonthValid(month) && checkIsInterestValid(interest)) {
+    if (
+      checkIsMonthValid(month) &&
+      checkIsInterestValid(interest) &&
+      checkIsNotDuplicate(month, interest)
+    ) {
       const updatedInterestChanges = [
         ...interestChanges,
         {
           month,
           interest,
         },
-      ];
+      ].sort(({ month: m1 }, { month: m2 }) => m1 - m2);
       setInterestChanges(updatedInterestChanges);
     }
   };
@@ -86,34 +95,8 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
             </div>
           ))}
         </div>
-        <div className="interest-change-input-container">
-          {inputs.map(
-            ({ key, value, type, step, min, max, onChange }, index) => (
-              <div
-                className="interest-change-input-container__grid"
-                key={`interest-change-input-container-${index}`}
-              >
-                <label>{key}</label>
-                <input
-                  type={type}
-                  value={value}
-                  step={step}
-                  min={min}
-                  max={max}
-                  onChange={onChange}
-                  inputMode="numeric"
-                />
-              </div>
-            )
-          )}
-          <button
-            className="interest-change-input-container__add-entry"
-            onClick={() => onAddInterestChange()}
-          >
-            +
-          </button>
-        </div>
       </div>
+      <InputGrid inputs={inputs} onSave={onAddInterestChange} />
     </InputSection>
   );
 };

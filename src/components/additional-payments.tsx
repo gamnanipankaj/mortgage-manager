@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { IAdditionalPayment } from "../interfaces";
 import { formatAmount } from "../utils/format-amount";
 import { InputSection } from "../common/input-section";
+import { InputGrid } from "../common/input-grid";
 
 interface IAdditionalPaymentProps {
   tenure: number;
@@ -72,40 +73,17 @@ export const AdditionalPayments = ({
 
   return (
     <InputSection title="Additional Payments">
-      <div className="additional-payments-input-container">
-        {additionalPayments.map(({ amount, month }, index) => (
-          <div
-            className="show-additional-payments-container"
-            key={`show-additional-payments-${index}`}
-          >
-            <p>{month}</p>
-            <p>{formatAmount(amount, { isCurrencySymbol: true })}</p>
-            <button onClick={() => onRemoveAdditionalPayment(index)}>-</button>
-          </div>
-        ))}
-        <div className="mt-2">
-          {inputs.map(({ key, type, value, step, min, max, onChange }) => (
-            <div
-              className="additional-payments-input-container__grid"
-              key={`additional-payment-input-grid-${key}`}
-            >
-              <label>{key}</label>
-              <input
-                type={type}
-                value={value}
-                onChange={onChange}
-                step={step}
-                min={min}
-                max={max}
-                inputMode="numeric"
-              />
-            </div>
-          ))}
+      {additionalPayments.map(({ amount, month }, index) => (
+        <div
+          className="show-additional-payments-container"
+          key={`show-additional-payments-${index}`}
+        >
+          <p>{month}</p>
+          <p>{formatAmount(amount, { isCurrencySymbol: true })}</p>
+          <button onClick={() => onRemoveAdditionalPayment(index)}>-</button>
         </div>
-        <button className="border px-2" onClick={onAddAdditionalPayment}>
-          +
-        </button>
-      </div>
+      ))}
+      <InputGrid inputs={inputs} onSave={onAddAdditionalPayment} />
     </InputSection>
   );
 };

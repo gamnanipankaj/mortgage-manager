@@ -13,6 +13,6 @@
 }
 
 .input-section-container__hide-button {
-    @apply w-full mt-4 py-2 text-xs;
+    @apply w-full py-2 text-xs;
     color: var(--information-text);
 }

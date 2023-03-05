@@ -1,0 +1,22 @@
+.input-grid-container {
+    @apply bg-gray-900 py-2;
+}
+
+.input-grid-container__row-item {
+    @apply grid grid-cols-2 mb-1;
+}
+
+.input-grid-container__row-item > p {
+    @apply px-4 py-2 text-left text-sm font-light;
+    color: var(--not-important);
+}
+
+.input-grid-container__row-item > input {
+    @apply px-4 text-right bg-gray-900 border border-gray-500; 
+    color: var(--secondary-text);
+}
+
+.input-grid-container__save {
+    @apply w-4/5 py-2 text-xs border border-gray-700;
+    color: var(--information-text);
+}
