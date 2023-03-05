@@ -1,6 +1,6 @@
 import "./app.css";
 import React, { useEffect, useState } from "react";
-import { calculateTerms } from "./utils";
+import { calculateTerms } from "./utils/calculate-terms";
 import {
   IAdditionalPayment,
   IAmortization,
@@ -8,8 +8,8 @@ import {
 } from "./interfaces";
 import { Amortization, BasicLoanDetails, InterestChanges } from "./components";
 import { useDebounce, useLocalStorage } from "./hooks";
-import { formatAmount } from "./utils/format-amount";
 import { AdditionalPayments } from "./components/additional-payments";
+import { Header } from "./components/header";
 
 const defaults = {
   principal: 1000000,
@@ -17,7 +17,7 @@ const defaults = {
   tenure: 240,
 } as const;
 
-function App() {
+const App = () => {
   const [principal, setPrincipal] = useLocalStorage<number>(
     "principal",
     defaults.principal
@@ -59,10 +59,7 @@ function App() {
 
   return (
     <div className="page-container">
-      <div className="app-information-bar">
-        <h2>EMI:</h2>
-        <h2>{formatAmount(Math.ceil(emi), { isCurrencySymbol: true })}</h2>
-      </div>
+      <Header emi={emi} amortization={amortization} />
       <BasicLoanDetails
         principal={principal}
         setPrincipal={setPrincipal}
@@ -84,6 +81,6 @@ function App() {
       <Amortization amortization={amortization} />
     </div>
   );
-}
+};
 
 export default App;

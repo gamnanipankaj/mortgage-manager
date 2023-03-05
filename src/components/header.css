@@ -1,0 +1,24 @@
+.header-container {
+    @apply mt-2 py-2 border border-gray-900;
+}
+
+.header-container_keys {
+    @apply grid grid-cols-3 px-4 text-center text-sm;
+    color: var(--not-important);
+}
+
+.header-container_values {
+    @apply grid grid-cols-3 px-4 text-center;
+}
+
+.header-container_values > p:nth-child(1) {
+    color: var(--success);
+}
+
+.header-container_values > p:nth-child(2) {
+    color: var(--error);
+}
+
+.header-container_values > p:nth-child(3) {
+    color: var(--primary-text);
+}

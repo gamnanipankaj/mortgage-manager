@@ -5,17 +5,3 @@
 .page-container {
     @apply m-auto w-11/12 md:w-3/5;
 }
-
-.app-information-bar {
-    @apply grid grid-cols-2 text-lg p-2 my-2 md:my-4 border border-gray-700;
-}
-
-.app-information-bar > h2:first-child {
-    @apply px-2 text-right;
-    color: var(--primary-text);
-}
-
-.app-information-bar > h2:last-child {
-    @apply px-2 text-left;
-    color: var(--error);
-}

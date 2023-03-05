@@ -20,7 +20,7 @@
 }
 
 .amortization-entry > p {
-    @apply text-justify border-b border-gray-700 md:px-8 md:py-2 py-1 font-thin;
+    @apply text-justify text-sm border-b border-gray-700 md:px-8 md:py-2 py-1 font-thin;
     font-family: 'Roboto Mono', monospace;
 }
 
