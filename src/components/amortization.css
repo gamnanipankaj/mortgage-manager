@@ -11,6 +11,10 @@
     @apply text-justify text-sm border-b md:px-8 border-gray-500 overflow-x-clip;
 }
 
+.amortization-headers > div:first-child {
+    @apply px-2;
+}
+
 .amortization-entry__container {
     @apply h-[60vh] overflow-scroll;
 }
@@ -24,6 +28,11 @@
     font-family: 'Roboto Mono', monospace;
 }
 
+.amortization-entry > p:first-child {
+    @apply text-xs px-2;
+    color: var(--not-important)
+}
+
 .amortization-entry > p:nth-child(2) {
     color: var(--error);
 }
@@ -32,9 +41,6 @@
     color: var(--success);
 }
 
-.amortization-entry > p:first-child {
-    color: var(--not-important)
-}
 
 .amortization-entry > p:last-child {
     color: var(--secondary-text)

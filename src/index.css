@@ -12,14 +12,11 @@ body {
     color: white;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type="month"] {
+  @apply w-full;
+  color-scheme: dark;
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="month"]::-webkit-calendar-picker-indicator {
+  @apply absolute;
 }

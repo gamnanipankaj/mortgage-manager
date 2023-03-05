@@ -4,13 +4,16 @@ import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
 
 interface IBasicLoanDetailsProps
-  extends Pick<ILoanDetails, "principal" | "interest" | "tenure"> {
+  extends Pick<ILoanDetails, "principal" | "interest" | "tenure" | "start"> {
+  setStart: React.Dispatch<React.SetStateAction<string>>;
   setPrincipal: React.Dispatch<React.SetStateAction<number>>;
   setInterest: React.Dispatch<React.SetStateAction<number>>;
   setTenure: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const BasicLoanDetails = ({
+  start,
+  setStart,
   principal,
   setPrincipal,
   interest,
@@ -19,6 +22,16 @@ export const BasicLoanDetails = ({
   setTenure,
 }: IBasicLoanDetailsProps) => {
   const inputs = [
+    {
+      key: "Start",
+      type: "month",
+      value: start,
+      step: 1,
+      min: -Infinity,
+      max: Infinity,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+        setStart(event.target.value),
+    },
     {
       key: "Principal",
       type: "number",

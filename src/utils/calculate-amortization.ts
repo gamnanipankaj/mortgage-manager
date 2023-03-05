@@ -1,8 +1,8 @@
-import { IAmortization, ILoanDetails } from "../interfaces";
+import { IAmortization, ILoanDetailsWithoutStart } from "../interfaces";
 import { calculateRateOfInterest } from "./calculate-rate-of-interest";
 import { checkIsValidLoanDetails } from "./check-is-valid-loan-details";
 
-interface ICalculateAmortizationArgs extends ILoanDetails {
+interface ICalculateAmortizationArgs extends ILoanDetailsWithoutStart {
     emi: number;
 }
 

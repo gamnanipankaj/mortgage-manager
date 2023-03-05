@@ -10,6 +10,7 @@ import { Amortization, BasicLoanDetails, InterestChanges } from "./components";
 import { useDebounce, useLocalStorage } from "./hooks";
 import { AdditionalPayments } from "./components/additional-payments";
 import { Header } from "./components/header";
+import { formatMonthAndYear } from "./utils/format-month-and-year";
 
 const defaults = {
   principal: 1000000,
@@ -17,7 +18,11 @@ const defaults = {
   tenure: 240,
 } as const;
 
-const App = () => {
+const App: React.FC<{}> = () => {
+  const [start, setStart] = useLocalStorage<string>(
+    "start",
+    formatMonthAndYear(new Date())
+  );
   const [principal, setPrincipal] = useLocalStorage<number>(
     "principal",
     defaults.principal
@@ -61,6 +66,8 @@ const App = () => {
     <div className="page-container">
       <Header emi={emi} amortization={amortization} />
       <BasicLoanDetails
+        start={start}
+        setStart={setStart}
         principal={principal}
         setPrincipal={setPrincipal}
         interest={interest}
@@ -78,7 +85,7 @@ const App = () => {
         interestChanges={interestChanges}
         setInterestChanges={setInterestChanges}
       />
-      <Amortization amortization={amortization} />
+      <Amortization start={start} amortization={amortization} />
     </div>
   );
 };
