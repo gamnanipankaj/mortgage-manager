@@ -1,8 +1,8 @@
-import "./interest-changes.css";
 import React, { useState } from "react";
 import { IInterestChange } from "../interfaces";
 import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
+import { ListInput } from "../common/list-input";
 
 interface IInterestChangesProps {
   tenure: number;
@@ -74,28 +74,14 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
 
   return (
     <InputSection title="Interest Changes">
-      <div className="interest-changes-container">
-        <div>
-          {interestChanges.map(({ month, interest }, index) => (
-            <div
-              className="interest-changes-list-entry"
-              key={`interest-changes-entry-${index}`}
-            >
-              <p>{month}</p>
-              <p>
-                {interest}
-                {" %"}
-              </p>
-              <button
-                className="interest-change-list-entry__delete-button"
-                onClick={() => onRemoveInterestChange(index)}
-              >
-                -
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+      <ListInput
+        uI="interest-change"
+        items={interestChanges.map(({ month, interest }) => [
+          month,
+          `${interest} %`,
+        ])}
+        onRemove={(index) => onRemoveInterestChange(index)}
+      />
       <InputGrid inputs={inputs} onSave={onAddInterestChange} />
     </InputSection>
   );

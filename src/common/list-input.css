@@ -1,0 +1,23 @@
+.list-input-container {
+    @apply bg-gray-900;
+}
+
+.list-input-container-entry {
+    @apply grid grid-cols-3 py-2 border-b border-gray-500;
+}
+
+.list-input-container-entry > p:nth-child(1) {
+    @apply px-4 text-left;
+    color: var(--not-important);
+}
+
+.list-input-container-entry > p:nth-child(2) {
+    @apply px-4 text-right;
+    color: var(--secondary-text);
+}
+
+.list-input-container-entry > button {
+    @apply w-fit ml-auto mr-4 px-4 border;
+    border-color: var(--error);
+    color: var(--error);
+}

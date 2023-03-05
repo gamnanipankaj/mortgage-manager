@@ -7,11 +7,6 @@
     color: var(--information-text);
 }
 
-.input-section-container__title {
-    @apply text-sm pt-2 w-full;
-    color: var(--information-text);
-}
-
 .input-section-container__hide-button {
     @apply w-full py-2 text-xs;
     color: var(--information-text);

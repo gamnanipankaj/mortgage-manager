@@ -18,21 +18,13 @@ export const InputSection: React.FC<PropsWithChildren<IInputSectionProps>> = ({
 
   return (
     <div className="input-section-container">
-      {!isOpen && (
+      {title && (
         <button
           className="input-section-container__show-button"
           onClick={toggleVisibility}
         >
           {title}
         </button>
-      )}
-      {isOpen && title && (
-        <div
-          className="input-section-container__title"
-          onClick={toggleVisibility}
-        >
-          {title}
-        </div>
       )}
       {isOpen && children}
       {isOpen && canClose && (
