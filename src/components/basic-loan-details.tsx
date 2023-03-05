@@ -1,6 +1,7 @@
 import "./basic-loan-details.css";
 import React from "react";
 import { ILoanDetails } from "../interfaces";
+import { InputSection } from "../common/input-section";
 
 interface IBasicLoanDetailsProps
   extends Pick<ILoanDetails, "principal" | "interest" | "tenure"> {
@@ -43,22 +44,24 @@ export const BasicLoanDetails = ({
 
   return (
     <div className="basic-loan-details-container">
-      {basicLoanDetails.map(({ key, value, step, onChange }, index) => (
-        <div
-          className="basic-loan-details-grid"
-          key={`basic-loan-details-${index}`}
-        >
-          <p className="basic-loan-details-grid__key">{key}</p>
-          <input
-            type="number"
-            className="basic-loan-details-grid__value"
-            value={value}
-            inputMode="numeric"
-            step={step}
-            onChange={onChange}
-          />
-        </div>
-      ))}
+      <InputSection isDefaultOpen canClose={false}>
+        {basicLoanDetails.map(({ key, value, step, onChange }, index) => (
+          <div
+            className="basic-loan-details-grid"
+            key={`basic-loan-details-${index}`}
+          >
+            <p className="basic-loan-details-grid__key">{key}</p>
+            <input
+              type="number"
+              className="basic-loan-details-grid__value"
+              value={value}
+              inputMode="numeric"
+              step={step}
+              onChange={onChange}
+            />
+          </div>
+        ))}
+      </InputSection>
     </div>
   );
 };

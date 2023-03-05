@@ -1,6 +1,7 @@
 import "./interest-changes.css";
 import React, { useState } from "react";
 import { IInterestChange } from "../interfaces";
+import { InputSection } from "../common/input-section";
 
 interface IInterestChangesProps {
   tenure: number;
@@ -13,7 +14,6 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
   interestChanges,
   setInterestChanges,
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [month, setMonth] = useState<number>(0);
   const [interest, setInterest] = useState<number>(0);
 
@@ -64,75 +64,56 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
   };
 
   return (
-    <>
-      {!isOpen && (
-        <button
-          className="interest-changes-visibility-button"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          Interest Changes
-        </button>
-      )}
-      {isOpen && (
-        <div className="interest-changes-container">
-          <div className="interest-changes-container__title">
-            Interest Changes
-          </div>
-          <div>
-            {interestChanges.map(({ month, interest }, index) => (
-              <div
-                className="interest-changes-list-entry"
-                key={`interest-changes-entry-${index}`}
-              >
-                <p>{month}</p>
-                <p>
-                  {interest}
-                  {" %"}
-                </p>
-                <button
-                  className="interest-change-list-entry__delete-button"
-                  onClick={() => onRemoveInterestChange(index)}
-                >
-                  -
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className="interest-change-input-container">
-            {inputs.map(
-              ({ key, value, type, step, min, max, onChange }, index) => (
-                <div
-                  className="interest-change-input-container__grid"
-                  key={`interest-change-input-container-${index}`}
-                >
-                  <label>{key}</label>
-                  <input
-                    type={type}
-                    value={value}
-                    step={step}
-                    min={min}
-                    max={max}
-                    onChange={onChange}
-                    inputMode="numeric"
-                  />
-                </div>
-              )
-            )}
-            <button
-              className="interest-change-input-container__add-entry"
-              onClick={() => onAddInterestChange()}
+    <InputSection title="Interest Changes">
+      <div className="interest-changes-container">
+        <div>
+          {interestChanges.map(({ month, interest }, index) => (
+            <div
+              className="interest-changes-list-entry"
+              key={`interest-changes-entry-${index}`}
             >
-              +
-            </button>
-          </div>
+              <p>{month}</p>
+              <p>
+                {interest}
+                {" %"}
+              </p>
+              <button
+                className="interest-change-list-entry__delete-button"
+                onClick={() => onRemoveInterestChange(index)}
+              >
+                -
+              </button>
+            </div>
+          ))}
+        </div>
+        <div className="interest-change-input-container">
+          {inputs.map(
+            ({ key, value, type, step, min, max, onChange }, index) => (
+              <div
+                className="interest-change-input-container__grid"
+                key={`interest-change-input-container-${index}`}
+              >
+                <label>{key}</label>
+                <input
+                  type={type}
+                  value={value}
+                  step={step}
+                  min={min}
+                  max={max}
+                  onChange={onChange}
+                  inputMode="numeric"
+                />
+              </div>
+            )
+          )}
           <button
-            className="interest-changes-container__close"
-            onClick={() => setIsOpen(!isOpen)}
+            className="interest-change-input-container__add-entry"
+            onClick={() => onAddInterestChange()}
           >
-            Close
+            +
           </button>
         </div>
-      )}
-    </>
+      </div>
+    </InputSection>
   );
 };

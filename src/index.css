@@ -1,6 +1,7 @@
 :root {
     --primary-text: #4285F4;
     --secondary-text:  #F4B400;
+    --information-text: #d1d5d8;
     --success: #0F9D58;
     --error: #DB4437;
     --not-important: #999999;

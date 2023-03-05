@@ -2,6 +2,7 @@ import "./additional-payments.css";
 import React, { useState } from "react";
 import { IAdditionalPayment } from "../interfaces";
 import { formatAmount } from "../utils/format-amount";
+import { InputSection } from "../common/input-section";
 
 interface IAdditionalPaymentProps {
   tenure: number;
@@ -11,7 +12,6 @@ interface IAdditionalPaymentProps {
   >;
 }
 
-const additionalPaymentsText = "Additional Payments";
 const defaults = {
   amount: 0,
   month: 0,
@@ -22,7 +22,6 @@ export const AdditionalPayments = ({
   additionalPayments,
   setAdditionalPayments,
 }: IAdditionalPaymentProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [amount, setAmount] = useState<number>(defaults.amount);
   const [month, setMonth] = useState<number>(defaults.month);
 
@@ -72,59 +71,41 @@ export const AdditionalPayments = ({
   };
 
   return (
-    <>
-      {!isOpen && (
-        <button
-          className="additional-payments-button"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {additionalPaymentsText}
-        </button>
-      )}
-      {isOpen && (
-        <div className="additional-payments-input-container">
-          {additionalPayments.map(({ amount, month }, index) => (
+    <InputSection title="Additional Payments">
+      <div className="additional-payments-input-container">
+        {additionalPayments.map(({ amount, month }, index) => (
+          <div
+            className="show-additional-payments-container"
+            key={`show-additional-payments-${index}`}
+          >
+            <p>{month}</p>
+            <p>{formatAmount(amount, { isCurrencySymbol: true })}</p>
+            <button onClick={() => onRemoveAdditionalPayment(index)}>-</button>
+          </div>
+        ))}
+        <div className="mt-2">
+          {inputs.map(({ key, type, value, step, min, max, onChange }) => (
             <div
-              className="show-additional-payments-container"
-              key={`show-additional-payments-${index}`}
+              className="additional-payments-input-container__grid"
+              key={`additional-payment-input-grid-${key}`}
             >
-              <p>{month}</p>
-              <p>{formatAmount(amount, { isCurrencySymbol: true })}</p>
-              <button onClick={() => onRemoveAdditionalPayment(index)}>
-                -
-              </button>
+              <label>{key}</label>
+              <input
+                type={type}
+                value={value}
+                onChange={onChange}
+                step={step}
+                min={min}
+                max={max}
+                inputMode="numeric"
+              />
             </div>
           ))}
-          <div className="mt-2">
-            {inputs.map(({ key, type, value, step, min, max, onChange }) => (
-              <div
-                className="additional-payments-input-container__grid"
-                key={`additional-payment-input-grid-${key}`}
-              >
-                <label>{key}</label>
-                <input
-                  type={type}
-                  value={value}
-                  onChange={onChange}
-                  step={step}
-                  min={min}
-                  max={max}
-                  inputMode="numeric"
-                />
-              </div>
-            ))}
-          </div>
-          <button className="border px-2" onClick={onAddAdditionalPayment}>
-            +
-          </button>
-          <button
-            className="additional-payments-input-container__close-button"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            Close
-          </button>
         </div>
-      )}
-    </>
+        <button className="border px-2" onClick={onAddAdditionalPayment}>
+          +
+        </button>
+      </div>
+    </InputSection>
   );
 };
