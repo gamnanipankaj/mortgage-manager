@@ -7,7 +7,7 @@
 }
 
 .list-input-container-entry > p:nth-child(1) {
-    @apply px-4 text-left;
+    @apply px-4 text-left font-light text-xs;
     color: var(--not-important);
 }
 

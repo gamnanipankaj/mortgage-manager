@@ -2,7 +2,6 @@ import "./amortization.css";
 import React from "react";
 import { IAmortization } from "../interfaces";
 import { formatAmount } from "../utils/format-amount";
-import { getMonthAndYearByOffset } from "../utils/get-month-and-year-by-offset";
 
 const AmortizationHeaders = () => {
   const amortizationHeaders = ["Month", "Interest", "Principal", "Remaining"];
@@ -16,21 +15,21 @@ const AmortizationHeaders = () => {
 };
 
 const AmortizationEntry = ({
-  start,
-  month,
   interestPayment,
   principalPayment,
   principalRemaining,
+  yearHR,
+  monthHR,
 }: {
-  start: string;
-  month: number;
   interestPayment: number;
   principalPayment: number;
   principalRemaining: number;
+  yearHR: string;
+  monthHR: string;
 }) => {
   return (
     <div className="amortization-entry">
-      <p>{getMonthAndYearByOffset(start, month - 1)}</p>
+      <p>{`${yearHR}-${monthHR}`}</p>
       <p>{formatAmount(Math.ceil(interestPayment))}</p>
       <p>{formatAmount(Math.round(principalPayment))}</p>
       <p>{formatAmount(Math.round(principalRemaining))}</p>
@@ -39,12 +38,10 @@ const AmortizationEntry = ({
 };
 
 interface IAmortizationProps {
-  start: string;
   amortization: IAmortization[];
 }
 
 export const Amortization: React.FC<IAmortizationProps> = ({
-  start,
   amortization,
 }) => {
   return (
@@ -54,7 +51,6 @@ export const Amortization: React.FC<IAmortizationProps> = ({
         {amortization.map((amortizationEntry, index) => (
           <AmortizationEntry
             key={`amortization-entry-${index}`}
-            start={start}
             {...amortizationEntry}
           />
         ))}

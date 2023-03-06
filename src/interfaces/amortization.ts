@@ -4,4 +4,6 @@ export interface IAmortization {
     principalPayment: number;
     additionalPayment: number;
     principalRemaining: number;
+    yearHR: string;
+    monthHR: string;
 }

@@ -47,6 +47,7 @@ const App: React.FC<{}> = () => {
 
   const debounceCalculateTerms = useDebounce(() => {
     const { emi, amortization } = calculateTerms({
+      start,
       principal,
       tenure,
       interest,
@@ -59,7 +60,7 @@ const App: React.FC<{}> = () => {
 
   useEffect(
     () => debounceCalculateTerms(),
-    [principal, interest, tenure, additionalPayments, interestChanges]
+    [start, principal, interest, tenure, additionalPayments, interestChanges]
   );
 
   return (
@@ -87,7 +88,7 @@ const App: React.FC<{}> = () => {
         interestChanges={interestChanges}
         setInterestChanges={setInterestChanges}
       />
-      <Amortization start={start} amortization={amortization} />
+      <Amortization amortization={amortization} />
     </div>
   );
 };

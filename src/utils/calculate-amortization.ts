@@ -1,12 +1,13 @@
-import { IAmortization, ILoanDetailsWithoutStart } from "../interfaces";
+import { IAmortization, ILoanDetails } from "../interfaces";
 import { calculateRateOfInterest } from "./calculate-rate-of-interest";
 import { checkIsValidLoanDetails } from "./check-is-valid-loan-details";
+import { getMonthAndYearByOffset } from "./get-month-and-year-by-offset";
 
-interface ICalculateAmortizationArgs extends ILoanDetailsWithoutStart {
+interface ICalculateAmortizationArgs extends ILoanDetails {
     emi: number;
 }
 
-export const calculateAmortization = ({ principal, interest, tenure, emi, additionalPayments, interestChanges }: ICalculateAmortizationArgs) => {
+export const calculateAmortization = ({ start, principal, interest, tenure, emi, additionalPayments, interestChanges }: ICalculateAmortizationArgs) => {
     const amortization: IAmortization[] = [];
 
     let principalRemaining = principal;
@@ -32,12 +33,15 @@ export const calculateAmortization = ({ principal, interest, tenure, emi, additi
         // Remaining principal at the end of the month
         principalRemaining -= principalPayment;
 
+        const [yearHR, monthHR] = getMonthAndYearByOffset(start, month - 1).split('-');
         amortization.push({
             month,
             interestPayment,
             principalPayment,
             additionalPayment,
             principalRemaining: Math.max(principalRemaining, 0),
+            yearHR,
+            monthHR,
         });
     }
 
