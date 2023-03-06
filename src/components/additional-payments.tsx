@@ -5,6 +5,8 @@ import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
 import { ListInput } from "../common/list-input";
 import { getMonthAndYearByOffset } from "../utils/get-month-and-year-by-offset";
+import { calculateMonthOffset } from "../utils/calculate-month-offset";
+import { calculateCurrentMonthOffset } from "../utils/calculate-current-month-offset";
 
 interface IAdditionalPaymentProps {
   start: string;
@@ -14,11 +16,6 @@ interface IAdditionalPaymentProps {
     React.SetStateAction<IAdditionalPayment[]>
   >;
 }
-
-const defaults = {
-  amount: 0,
-  month: 0,
-} as const;
 
 const checkIsAmountValid = (amount: number) => !isNaN(amount) && amount > 0;
 const checkIsMonthValid = (month: number, tenure: number) =>
@@ -30,19 +27,21 @@ export const AdditionalPayments = ({
   additionalPayments,
   setAdditionalPayments,
 }: IAdditionalPaymentProps) => {
-  const [amount, setAmount] = useState<number>(defaults.amount);
-  const [month, setMonth] = useState<number>(defaults.month);
+  const [amount, setAmount] = useState<number>(0);
+  const [month, setMonth] = useState<number>(
+    calculateCurrentMonthOffset(start)
+  );
 
   const inputs = [
     {
       key: "Month",
-      type: "number",
-      value: month.toString(),
+      type: "month",
+      value: getMonthAndYearByOffset(start, Math.max(month - 1, 0)),
       step: 1,
       min: 1,
       max: tenure,
       onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-        setMonth(+event.target.value),
+        setMonth(calculateMonthOffset(start, event.target.value) + 1),
     },
     {
       key: "Amount",

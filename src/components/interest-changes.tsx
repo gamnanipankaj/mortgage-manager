@@ -4,6 +4,8 @@ import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
 import { ListInput } from "../common/list-input";
 import { getMonthAndYearByOffset } from "../utils/get-month-and-year-by-offset";
+import { calculateMonthOffset } from "../utils/calculate-month-offset";
+import { calculateCurrentMonthOffset } from "../utils/calculate-current-month-offset";
 
 interface IInterestChangesProps {
   start: string;
@@ -18,19 +20,21 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
   interestChanges,
   setInterestChanges,
 }) => {
-  const [month, setMonth] = useState<number>(0);
-  const [interest, setInterest] = useState<number>(0);
+  const [month, setMonth] = useState<number>(
+    calculateCurrentMonthOffset(start)
+  );
+  const [interest, setInterest] = useState<number>(6);
 
   const inputs = [
     {
       key: "Month",
-      type: "number",
-      value: month.toString(),
+      type: "month",
+      value: getMonthAndYearByOffset(start, Math.max(month - 1, 0)),
       step: 1,
       min: 1,
       max: tenure,
       onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-        setMonth(+event.target.value),
+        setMonth(calculateMonthOffset(start, event.target.value) + 1),
     },
     {
       key: "Interest",
