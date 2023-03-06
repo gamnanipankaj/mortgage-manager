@@ -3,16 +3,20 @@
 }
 
 .header-container_keys {
-    @apply grid grid-cols-3 px-4 text-center text-sm;
+    @apply grid grid-cols-4 px-4 text-center text-sm;
     color: var(--not-important);
 }
 
 .header-container_values {
-    @apply grid grid-cols-3 px-4 text-center;
+    @apply grid grid-cols-4 px-4 text-center;
 }
 
 .header-container_values > p {
     color: var(--error);
+}
+
+.header-container_values > p:first-child {
+    color: var(--secondary-text);
 }
 
 .header-container_values > p:last-child {
