@@ -3,14 +3,17 @@ import { IInterestChange } from "../interfaces";
 import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
 import { ListInput } from "../common/list-input";
+import { getMonthAndYearByOffset } from "../utils/get-month-and-year-by-offset";
 
 interface IInterestChangesProps {
+  start: string;
   tenure: number;
   interestChanges: IInterestChange[];
   setInterestChanges: React.Dispatch<React.SetStateAction<IInterestChange[]>>;
 }
 
 export const InterestChanges: React.FC<IInterestChangesProps> = ({
+  start,
   tenure,
   interestChanges,
   setInterestChanges,
@@ -77,7 +80,7 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
       <ListInput
         uI="interest-change"
         items={interestChanges.map(({ month, interest }) => [
-          month,
+          getMonthAndYearByOffset(start, month - 1),
           `${interest} %`,
         ])}
         onRemove={(index) => onRemoveInterestChange(index)}

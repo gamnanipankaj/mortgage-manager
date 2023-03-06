@@ -76,11 +76,13 @@ const App: React.FC<{}> = () => {
         setTenure={setTenure}
       />
       <AdditionalPayments
+        start={start}
         tenure={tenure}
         additionalPayments={additionalPayments}
         setAdditionalPayments={setAdditionalPayments}
       />
       <InterestChanges
+        start={start}
         tenure={tenure}
         interestChanges={interestChanges}
         setInterestChanges={setInterestChanges}

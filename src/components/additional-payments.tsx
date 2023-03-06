@@ -4,8 +4,10 @@ import { formatAmount } from "../utils/format-amount";
 import { InputSection } from "../common/input-section";
 import { InputGrid } from "../common/input-grid";
 import { ListInput } from "../common/list-input";
+import { getMonthAndYearByOffset } from "../utils/get-month-and-year-by-offset";
 
 interface IAdditionalPaymentProps {
+  start: string;
   tenure: number;
   additionalPayments: IAdditionalPayment[];
   setAdditionalPayments: React.Dispatch<
@@ -23,6 +25,7 @@ const checkIsMonthValid = (month: number, tenure: number) =>
   !isNaN(month) && month > 0 && month <= tenure;
 
 export const AdditionalPayments = ({
+  start,
   tenure,
   additionalPayments,
   setAdditionalPayments,
@@ -76,7 +79,7 @@ export const AdditionalPayments = ({
       <ListInput
         uI="additional-payments"
         items={additionalPayments.map(({ month, amount }) => [
-          month,
+          getMonthAndYearByOffset(start, month - 1),
           formatAmount(amount, { isCurrencySymbol: true }),
         ])}
         onRemove={(index: number) => onRemoveAdditionalPayment(index)}
