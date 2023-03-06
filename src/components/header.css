@@ -11,14 +11,10 @@
     @apply grid grid-cols-3 px-4 text-center;
 }
 
-.header-container_values > p:nth-child(1) {
-    color: var(--success);
-}
-
-.header-container_values > p:nth-child(2) {
+.header-container_values > p {
     color: var(--error);
 }
 
-.header-container_values > p:nth-child(3) {
+.header-container_values > p:last-child {
     color: var(--primary-text);
 }

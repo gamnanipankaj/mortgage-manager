@@ -64,7 +64,7 @@ const App: React.FC<{}> = () => {
 
   return (
     <div className="page-container">
-      <Header emi={emi} amortization={amortization} />
+      <Header start={start} emi={emi} amortization={amortization} />
       <BasicLoanDetails
         start={start}
         setStart={setStart}
