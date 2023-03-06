@@ -25,8 +25,8 @@ export const calculateAmortization = ({ principal, interest, tenure, emi, additi
         interest = interestChanges.find((interestChange) => interestChange.month === month)?.interest ?? interest;
         rateOfInterest = calculateRateOfInterest(interest);
 
-        const interestPayment = principalRemaining * rateOfInterest;
         const additionalPayment = additionalPayments.find((additionalPayment) => additionalPayment.month === month)?.amount ?? 0;
+        const interestPayment = (principalRemaining - additionalPayment) * rateOfInterest;
         const principalPayment = additionalPayment + Math.min(emi - interestPayment, principalRemaining);
 
         // Remaining principal at the end of the month

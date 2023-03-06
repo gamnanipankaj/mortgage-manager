@@ -30,7 +30,7 @@ const AmortizationEntry = ({
 }) => {
   return (
     <div className="amortization-entry">
-      <p>{getMonthAndYearByOffset(start, month)}</p>
+      <p>{getMonthAndYearByOffset(start, month - 1)}</p>
       <p>{formatAmount(Math.ceil(interestPayment))}</p>
       <p>{formatAmount(Math.round(principalPayment))}</p>
       <p>{formatAmount(Math.round(principalRemaining))}</p>
