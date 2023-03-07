@@ -103,12 +103,12 @@ const App: React.FC<{}> = () => {
         interestChanges={interestChanges}
         setInterestChanges={setInterestChanges}
       />
-      <Disbursements
+      {/* <Disbursements
         start={start}
         tenure={tenure}
         disbursements={disbursements}
         setDisbursements={setDisbursements}
-      />
+      /> */}
       <Amortization amortization={amortization} />
     </div>
   );

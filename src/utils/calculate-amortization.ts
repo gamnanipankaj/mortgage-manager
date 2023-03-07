@@ -23,11 +23,11 @@ export const calculateAmortization = ({ start, principal, interest, tenure, emi,
             break;
         }
 
-        const disbursement = disbursements.find((disbursement) => disbursement.month === month)?.amount ?? 0;
-        if(disbursement > 0) {
-            principalRemaining += disbursement;
-            emi = calculateEmi({ principal: principalRemaining, tenure: tenure - month + 1, interest });
-        }
+        // const disbursement = disbursements.find((disbursement) => disbursement.month === month)?.amount ?? 0;
+        // if(disbursement > 0) {
+        //     principalRemaining += disbursement;
+        //     emi = calculateEmi({ principal: principalRemaining, tenure: tenure - month + 1, interest });
+        // }
 
         // Case where the EMI remains same but the interest changes
         interest = interestChanges.find((interestChange) => interestChange.month === month)?.interest ?? interest;

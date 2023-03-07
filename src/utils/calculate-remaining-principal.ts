@@ -13,7 +13,7 @@ export const calculateRemainingPrincipal = (start: string, amortization: IAmorti
             continue;
         }
 
-        principalRemaining += amortization[month - 1].principalPayment - amortization[month - 1].additionalPayment;
+        principalRemaining += amortization[month - 1].principalPayment;
     }
 
     return principalRemaining;

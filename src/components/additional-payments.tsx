@@ -27,7 +27,7 @@ export const AdditionalPayments = ({
   additionalPayments,
   setAdditionalPayments,
 }: IAdditionalPaymentProps) => {
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(100000);
   const [month, setMonth] = useState<number>(
     calculateCurrentMonthOffset(start)
   );
