@@ -1,4 +1,5 @@
 export interface IAmortization {
+    emi: number;
     month: number;
     interestPayment: number;
     principalPayment: number;

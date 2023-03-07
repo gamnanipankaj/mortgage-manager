@@ -8,18 +8,15 @@ import { calculateRemainingPrincipal } from "../utils/calculate-remaining-princi
 
 interface IHeaderProps {
   start: string;
-  emi: number;
   amortization: IAmortization[];
 }
 
-export const Header: React.FC<IHeaderProps> = ({
-  start,
-  emi,
-  amortization,
-}) => {
+export const Header: React.FC<IHeaderProps> = ({ start, amortization }) => {
   const remainingPrincipal = calculateRemainingPrincipal(start, amortization);
   const remainingTerm = calculateRemainingTerms(amortization, start);
   const totalInterest = calculateTotalInterest(amortization);
+  const emi =
+    amortization.length === 0 ? 0 : amortization[amortization.length - 1].emi;
 
   return (
     <div className="header-container">

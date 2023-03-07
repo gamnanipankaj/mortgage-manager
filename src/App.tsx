@@ -4,6 +4,7 @@ import { calculateTerms } from "./utils/calculate-terms";
 import {
   IAdditionalPayment,
   IAmortization,
+  IDisbursement,
   IInterestChange,
 } from "./interfaces";
 import { Amortization, BasicLoanDetails, InterestChanges } from "./components";
@@ -11,6 +12,7 @@ import { useDebounce, useLocalStorage } from "./hooks";
 import { AdditionalPayments } from "./components/additional-payments";
 import { Header } from "./components/header";
 import { formatMonthAndYear } from "./utils/format-month-and-year";
+import { Disbursements } from "./components/disbursements";
 
 const defaults = {
   principal: 1000000,
@@ -41,6 +43,10 @@ const App: React.FC<{}> = () => {
   const [interestChanges, setInterestChanges] = useLocalStorage<
     IInterestChange[]
   >("interestChanges", []);
+  const [disbursements, setDisbursements] = useLocalStorage<IDisbursement[]>(
+    "disbursements",
+    []
+  );
 
   const [emi, setEmi] = useState(0);
   const [amortization, setAmortization] = useState<IAmortization[]>([]);
@@ -53,6 +59,7 @@ const App: React.FC<{}> = () => {
       interest,
       additionalPayments,
       interestChanges,
+      disbursements,
     });
     setEmi(emi);
     setAmortization(amortization);
@@ -60,12 +67,20 @@ const App: React.FC<{}> = () => {
 
   useEffect(
     () => debounceCalculateTerms(),
-    [start, principal, interest, tenure, additionalPayments, interestChanges]
+    [
+      start,
+      principal,
+      interest,
+      tenure,
+      additionalPayments,
+      interestChanges,
+      disbursements,
+    ]
   );
 
   return (
     <div className="page-container">
-      <Header start={start} emi={emi} amortization={amortization} />
+      <Header start={start} amortization={amortization} />
       <BasicLoanDetails
         start={start}
         setStart={setStart}
@@ -87,6 +102,12 @@ const App: React.FC<{}> = () => {
         tenure={tenure}
         interestChanges={interestChanges}
         setInterestChanges={setInterestChanges}
+      />
+      <Disbursements
+        start={start}
+        tenure={tenure}
+        disbursements={disbursements}
+        setDisbursements={setDisbursements}
       />
       <Amortization amortization={amortization} />
     </div>

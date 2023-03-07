@@ -4,9 +4,9 @@ import { calculateEmi } from "./calculate-emi";
 
 interface ICalculateEmiArgs extends ILoanDetails {}
 
-export const calculateTerms = ({start, principal, tenure, interest, additionalPayments, interestChanges}: ICalculateEmiArgs) => {
+export const calculateTerms = ({start, principal, tenure, interest, additionalPayments, interestChanges, disbursements}: ICalculateEmiArgs) => {
     const emi = calculateEmi({principal, tenure, interest});
-    const amortization = calculateAmortization({start, principal, tenure, interest, emi, additionalPayments, interestChanges});
+    const amortization = calculateAmortization({start, principal, tenure, interest, emi, additionalPayments, interestChanges, disbursements});
 
     return {emi, amortization};
 }

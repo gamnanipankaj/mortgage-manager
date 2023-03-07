@@ -6,6 +6,15 @@ export const calculateRemainingPrincipal = (start: string, amortization: IAmorti
         return 0;
     }
 
+    let principalRemaining = 0;
     const currentMonthOffset = calculateCurrentMonthOffset(start) - 1;
-    return amortization[currentMonthOffset].principalRemaining;
+    for(let month = 1; month <= amortization.length; month += 1) {
+        if(month <= currentMonthOffset) {
+            continue;
+        }
+
+        principalRemaining += amortization[month - 1].principalPayment - amortization[month - 1].additionalPayment;
+    }
+
+    return principalRemaining;
 }
