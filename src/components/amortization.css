@@ -30,10 +30,12 @@
 
 .amortization-entry > div {
     @apply border-b border-gray-700;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .amortization-entry > div > p:nth-child(2) {
     @apply text-xs text-center;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .amortization-entry > p:first-child {
