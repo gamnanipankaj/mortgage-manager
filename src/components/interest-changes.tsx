@@ -80,7 +80,7 @@ export const InterestChanges: React.FC<IInterestChangesProps> = ({
   };
 
   return (
-    <InputSection title="Interest Changes">
+    <InputSection title={`Interest Changes [${interestChanges.length}]`}>
       <ListInput
         uI="interest-change"
         items={interestChanges.map(({ month, interest }) => [

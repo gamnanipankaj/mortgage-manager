@@ -16,7 +16,7 @@
 }
 
 .amortization-entry__container {
-    @apply h-[60vh] overflow-scroll;
+    @apply h-[50vh] overflow-scroll;
 }
 
 .amortization-entry {
@@ -28,6 +28,14 @@
     font-family: 'Roboto Mono', monospace;
 }
 
+.amortization-entry > div {
+    @apply border-b border-gray-700;
+}
+
+.amortization-entry > div > p:nth-child(2) {
+    @apply text-xs text-center;
+}
+
 .amortization-entry > p:first-child {
     @apply text-xs px-2;
     color: var(--not-important)
@@ -37,7 +45,7 @@
     color: var(--error);
 }
 
-.amortization-entry > p:nth-child(3) {
+.amortization-entry > div {
     color: var(--success);
 }
 

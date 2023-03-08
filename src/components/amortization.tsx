@@ -18,21 +18,44 @@ const AmortizationEntry = ({
   interestPayment,
   principalPayment,
   principalRemaining,
+  additionalPayment,
   yearHR,
   monthHR,
 }: {
   interestPayment: number;
   principalPayment: number;
   principalRemaining: number;
+  additionalPayment: number;
   yearHR: string;
   monthHR: string;
 }) => {
   return (
     <div className="amortization-entry">
       <p>{`${yearHR}-${monthHR}`}</p>
-      <p>{formatAmount(Math.ceil(interestPayment))}</p>
-      <p>{formatAmount(Math.round(principalPayment))}</p>
-      <p>{formatAmount(Math.round(principalRemaining))}</p>
+      <p>
+        {formatAmount(Math.round(interestPayment), { isCurrencySymbol: true })}
+      </p>
+      <div>
+        <p className="pt-2 border-0">
+          {formatAmount(
+            Math.round(principalPayment) - Math.round(additionalPayment),
+            { isCurrencySymbol: true }
+          )}
+        </p>
+        {additionalPayment > 0 && (
+          <p className="pt-2 border-0">
+            +
+            {formatAmount(Math.round(additionalPayment), {
+              isCurrencySymbol: true,
+            })}
+          </p>
+        )}
+      </div>
+      <p>
+        {formatAmount(Math.round(principalRemaining), {
+          isCurrencySymbol: true,
+        })}
+      </p>
     </div>
   );
 };

@@ -74,7 +74,7 @@ export const AdditionalPayments = ({
   };
 
   return (
-    <InputSection title="Additional Payments">
+    <InputSection title={`Additional Payments [${additionalPayments.length}]`}>
       <ListInput
         uI="additional-payments"
         items={additionalPayments.map(({ month, amount }) => [
